@@ -1,9 +1,5 @@
 MygradesSr::Application.routes.draw do
-  resources :categories
-
   resources :grades
-
-  resources :categories
 
   resources :tasks
 
@@ -11,7 +7,11 @@ MygradesSr::Application.routes.draw do
 
   resources :grades
 
-  resources :courses
+  resources :courses do
+    resources :categories
+  end
+
+  resources :categories
 
   #get "home/index"
   root :to => "home#index"
