@@ -9,6 +9,7 @@
     <th></th>
   </tr>
 
+<% sum=0 %>
 <% @categories.each do |category| %>
   <tr>
     <td><%= category.name %></td>
@@ -17,9 +18,15 @@
     <td><%= link_to 'Edit', edit_course_category_path(@course,category) %></td>
     <td><%= link_to 'Destroy', [@course,category], confirm: 'Are you sure?', method: :delete %></td>
   </tr>
+  <% sum += category.weight %>
 <% end %>
 </table>
-
-<br />
+<br>
 
 <%= link_to 'New Category', new_course_category_path(@course) %>
+<br>
+<br>
+
+<% if sum != 1 then %>
+Caution: weights do not total 100%
+<% end %>
