@@ -14,7 +14,7 @@
   <tr>
     <td><%= category.name %></td>
     <td><%= category.weight.to_f*100 %>%</td>
-    <td><%= link_to 'Show', course_category_path(@course,category) %></td>
+    <td><%= link_to 'Tasks', category_tasks_path(category) %></td>
     <td><%= link_to 'Edit', edit_course_category_path(@course,category) %></td>
     <td><%= link_to 'Destroy', [@course,category], confirm: 'Are you sure?', method: :delete %></td>
   </tr>

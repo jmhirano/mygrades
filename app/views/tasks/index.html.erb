@@ -1,4 +1,4 @@
-<h1>Listing tasks</h1>
+<h1><%= @category.name %> Tasks</h1>
 
 <table>
   <tr>
@@ -12,19 +12,21 @@
   </tr>
 
 <% @tasks.each do |task| %>
+  <% category = Category.find(task.category_id) %>
+  <% course = Course.find(category.course_id) %>
   <tr>
-    <td><%= Course.find(task.course_id).name%></td>
-    <td><%= Category.find(task.category_id).name %></td>
+    <td><%= course.name%></td>
+    <td><%= category.name %></td>
     <td><%= task.name %></td>
     <td><%= task.total %></td>
     <td><%= task.due_date.strftime("%A, %B %d, %Y at %l%p") %></td>
-    <td><%= link_to 'Show', task %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Delete', task, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Show', [@category,task] %></td>
+    <td><%= link_to 'Edit', edit_category_task_path(@category,task) %></td>
+    <td><%= link_to 'Delete', [@category,task], confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to 'New Task', new_category_task_path(@category) %>

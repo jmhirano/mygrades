@@ -25,8 +25,8 @@ class CategoriesController < ApplicationController
   # GET /categories/new
   # GET /categories/new.json
   def new
-    @course = Course.find(params[:course_id])
     @category = @course.categories.new
+    @category.tasks.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -87,5 +87,4 @@ class CategoriesController < ApplicationController
     def load_course
       @course = Course.find(params[:course_id])
     end
-
 end
