@@ -1,4 +1,6 @@
-<h1><%= @category.name %> Tasks</h1>
+<% course = Course.find(@category.course_id) %>
+<h1><%= course.name %></h1>
+<h2><%= @category.name %></h2>
 
 <table>
   <tr>
@@ -12,11 +14,9 @@
   </tr>
 
 <% @tasks.each do |task| %>
-  <% category = Category.find(task.category_id) %>
-  <% course = Course.find(category.course_id) %>
   <tr>
     <td><%= course.name%></td>
-    <td><%= category.name %></td>
+    <td><%= @category.name %></td>
     <td><%= task.name %></td>
     <td><%= task.total %></td>
     <td><%= task.due_date.strftime("%A, %B %d, %Y at %l%p") %></td>
@@ -30,3 +30,6 @@
 <br />
 
 <%= link_to 'New Task', new_category_task_path(@category) %>
+<br />
+<br />
+<%= link_to 'Back to Course', course_categories_path(course) %>

@@ -1,8 +1,7 @@
-<h1>Listing courses</h1>
+<h1>Courses</h1>
 
 <table>
   <tr>
-    <th>Task</th>
     <th>Name</th>
     <th>Semester</th>
     <th></th>
@@ -12,10 +11,9 @@
 
 <% @courses.each do |course| %>
   <tr>
-    <td><%= course.task_id %></td>
     <td><%= course.name %></td>
     <td><%= course.semester %></td>
-    <td><%= link_to 'Show', course %></td>
+    <td><%= link_to 'View', course_categories_path(course) %></td>
     <td><%= link_to 'Edit', edit_course_path(course) %></td>
     <td><%= link_to 'Destroy', course, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
