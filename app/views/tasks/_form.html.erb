@@ -1,4 +1,4 @@
-<%= form_for(@task) do |f| %>
+<%= form_for([@category,@task]) do |f| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
@@ -11,14 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-	  <%= f.label :Course %>
-		<%= f.collection_select :course_id, Course.all, :id, :name, :prompt => "Select a Course" %>
-  </div>
-  <div class="field">
-		<%= f.label :Category %>
-    <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Select a Course" %><br />
-  </div>
+<p>
+  <b>Course:</b>
+  <%= Course.find(@category.course_id).name%>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @category.name %>
+</p>
+
   <div class="field">
     <%= f.label :name %>
     <%= f.text_field :name %><br />

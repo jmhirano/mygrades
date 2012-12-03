@@ -1,17 +1,17 @@
 MygradesSr::Application.routes.draw do
   resources :grades
 
-  resources :tasks
-
   resources :students
 
-  resources :grades
-
   resources :courses do
-    resources :categories
+    resources :categories, :name_prefix => "course_"
   end
 
-  resources :categories
+  resources :categories do
+    resources :tasks, :name_prefix => "category_"
+  end
+
+  resources :tasks
 
   #get "home/index"
   root :to => "home#index"
