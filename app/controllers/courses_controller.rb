@@ -13,8 +13,13 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @total = 0
     @course = Course.find(params[:id])
+    @grades = Grade.all
 
+    @grades.each { |grade| 
+      @total += grade
+    }
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @course }

@@ -5,6 +5,11 @@ class CategoriesController < ApplicationController
   def index
     @categories = @course.categories.all
 
+    @total = 0
+    @categories.each { |category|
+      @total += category.weight
+    }
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @categories }
