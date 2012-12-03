@@ -26,6 +26,9 @@
 <br>
 <br>
 
-<% if @total != 1 then %>
-Caution: weights do not total 100%
+<% if @total != 100 then %>
+Caution: weights do not total 100%, 
 <% end %>
+<%= @total %>
+<p>
+<%= @eachCategory %>
